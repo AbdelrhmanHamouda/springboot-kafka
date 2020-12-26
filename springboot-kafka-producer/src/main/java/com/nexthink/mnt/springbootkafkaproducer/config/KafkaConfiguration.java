@@ -22,7 +22,7 @@ public class KafkaConfiguration {
         Map<String, Object> config = new HashMap<>();
 
         // Point to the kafka server
-        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.0.0.1:9092");
+        config.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
         // Key configuration
         config.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         // Value configuration
