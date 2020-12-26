@@ -1,13 +1,13 @@
-package com.nexthink.mnt.springbootkafkaconsumer;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-@SpringBootTest
-class SpringbootKafkaConsumerApplicationTests {
-
-	@Test
-	void contextLoads() {
-	}
-
-}
+//package com.nexthink.mnt.springbootkafkaconsumer;
+//
+//import org.junit.jupiter.api.Test;
+//import org.springframework.boot.test.context.SpringBootTest;
+//
+//@SpringBootTest
+//class SpringbootKafkaConsumerApplicationTests {
+//
+//	@Test
+//	void contextLoads() {
+//	}
+//
+//}
