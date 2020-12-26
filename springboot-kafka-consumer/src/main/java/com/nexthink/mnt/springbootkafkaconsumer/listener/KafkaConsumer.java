@@ -9,8 +9,9 @@ import java.text.MessageFormat;
 public class KafkaConsumer {
 
     // Which topic this consumer will subscribe to
-    @KafkaListener(topics = "kafka_topic", groupId = "group_id")
     // print the received message
+
+    @KafkaListener(topics = "kafka_topic", group = "group_id")
     public void consume(String message) {
         System.out.println(
                 MessageFormat.format("Received Kafka message is:\n{0}", message)
