@@ -1,2 +1,4 @@
-package com.nexthink.mnt.springbootkafkaproducer.model;public class User {
+package com.nexthink.mnt.springbootkafkaproducer.model;
+
+public class User {
 }
