@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserResource {
 
     // @Autowired takes care of the whole configuration
-    // THis kafka was not bootstrapped because it is running locally
+    // THis kafka was configured in "KafkaConfiguration"
     @Autowired
     KafkaTemplate<String, User> kafkaTemplate;
     // Name if the kafka topic
@@ -21,7 +21,7 @@ public class UserResource {
 
     // Handle REST GET request
     @GetMapping("/publish/{name}")
-    public String kafkaPublishMessage(@PathVariable("message") final String name) {
+    public String kafkaPublishMessage(@PathVariable("name") final String name) {
 
         // Create a user with whatever name provided in the path
         User user = new User(name, "Mantis", 500000L);
