@@ -24,4 +24,12 @@ public class User {
     public void setDept(String dept) {
         this.dept = dept;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", dept='" + dept + '\'' +
+                '}';
+    }
 }
