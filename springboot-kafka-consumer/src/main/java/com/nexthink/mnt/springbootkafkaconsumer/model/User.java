@@ -1,8 +1,12 @@
 package com.nexthink.mnt.springbootkafkaconsumer.model;
 
+
 public class User {
     private String name;
     private String dept;
+
+    public User() {
+    }
 
     public User(String name, String dept) {
         this.name = name;
