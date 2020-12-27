@@ -1,5 +1,6 @@
 package com.nexthink.mnt.springbootkafkaconsumer.config;
 
+import com.nexthink.mnt.springbootkafkaconsumer.model.User;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.context.annotation.Bean;
@@ -8,6 +9,7 @@ import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
 import org.springframework.kafka.core.ConsumerFactory;
 import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
+import org.springframework.kafka.support.serializer.JsonDeserializer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +17,7 @@ import java.util.Map;
 @EnableKafka
 @Configuration
 public class KafkaConfiguration {
+    // ! Kafka consumer configuration for normal string messages
     @Bean
     public ConsumerFactory<String, String> consumerFactory() {
         // Init config to store kafka configuration
@@ -29,11 +32,47 @@ public class KafkaConfiguration {
     }
 
 
+    // Set which factory to use
     @Bean
     public ConcurrentKafkaListenerContainerFactory<String, String> kafkaListenerContainerFactory() {
         ConcurrentKafkaListenerContainerFactory<String, String> factory = new ConcurrentKafkaListenerContainerFactory<>();
 
+        // Use specifically "consumerFactory"
         factory.setConsumerFactory(consumerFactory());
+        return factory;
+    }
+
+    // ! Kafka consumer configuration for "User" based json messages
+    @Bean
+    public ConsumerFactory<String, User> userConsumerFactory() {
+
+        // Init config to store kafka configuration
+        Map<String, Object> config = new HashMap<>();
+
+        // Bootstrap kafka consumer for User json POJO
+        // Set server
+        config.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+        // Set group
+        config.put(ConsumerConfig.GROUP_ID_CONFIG, "group_json");
+        // Key deserialization
+        config.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
+        // Value deserialization
+        config.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, JsonDeserializer.class);
+
+        // Values provided are: config, key deserializer and value  deserializer
+        return new DefaultKafkaConsumerFactory<String, User>(
+                config,
+                new StringDeserializer(),
+                new JsonDeserializer<>(User.class)
+        );
+    }
+
+    // Set which factory to use
+    @Bean
+    public ConcurrentKafkaListenerContainerFactory<String, User> kafkaListenerContainerFactoryUserJson() {
+        ConcurrentKafkaListenerContainerFactory<String, User> factory = new ConcurrentKafkaListenerContainerFactory<>();
+        // Use specifically "userConsumerFactory"
+        factory.setConsumerFactory(userConsumerFactory());
         return factory;
     }
 }
