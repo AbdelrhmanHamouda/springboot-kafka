@@ -20,7 +20,7 @@ public class KafkaConsumer {
 
     // Which topic this consumer will subscribe to
     // print the received message
-    @KafkaListener(topics = "kafka_topic", group = "group_json",
+    @KafkaListener(topics = "kafka_topic_json", group = "group_json",
             containerFactory = "kafkaListenerContainerFactoryUserJson")
     public void consumeUserJson(User user) {
         System.out.println(
