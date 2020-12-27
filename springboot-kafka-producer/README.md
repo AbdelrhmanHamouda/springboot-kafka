@@ -29,3 +29,7 @@ step6: Create kafka topic consumer
 ```shell
 $term3>> bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic <kafka_topic_name> --from-beginning
 ```
+
+
+# Publish a Json 
+Send a GET request to ```http://localhost:8081/kafka/publish/{user_name}``` and the service will publish a Json message to "Kafka_topic" topic. Result can be seen on the consumer from ```$term3```.
