@@ -10,7 +10,6 @@ public class KafkaConsumer {
 
     // Which topic this consumer will subscribe to
     // print the received message
-
     @KafkaListener(topics = "kafka_topic", group = "group_id")
     public void consume(String message) {
         System.out.println(
